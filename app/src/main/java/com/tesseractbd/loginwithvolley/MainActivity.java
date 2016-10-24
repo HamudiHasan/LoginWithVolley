@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     EditText etUserName;
     EditText etPassword;
 
+/*
+    Credentials :
+    aid=2&code=zxcv
+    aid=2&code=qwer
+    aid=2&code=asdf
+*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
