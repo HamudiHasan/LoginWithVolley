@@ -1,5 +1,7 @@
 package com.tesseractbd.loginwithvolley;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         etUserName = (EditText) findViewById(R.id.et_user_name);
         etPassword = (EditText) findViewById(R.id.et_password);
 
+        // retrieve from SharedPreferences
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String name = preferences.getString("Role", "null");
+        Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
+
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("Role",response );
+                            editor.commit();
+
                             Toast.makeText(MainActivity.this, "Successfully login as "+response, Toast.LENGTH_SHORT).show();
                         }
                     }
